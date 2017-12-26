@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# Code-blocks files
+*.cbp
+*.layout
+*.depend
+*bin
+
+# Custom
+ROADMAP
+*.swp
