@@ -1,3 +1,6 @@
+// This free software is licensed under GPL version 3 without any implied or
+// explicit warranties. This copyright notice must be included in all
+// non-machine-executable copies or derivative works of this software.
 #include "TomlProcessor.hpp"
 
 #include <fstream>
@@ -8,6 +11,7 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
+namespace toml {
 
 TomlProcessor::TomlProcessor() {
 }
@@ -23,9 +27,10 @@ bool TomlProcessor::parse(string filePath) {
         return false;
 
     while (getline (file,line)) {
-        clean(line);
-        if(line != "")
+        removeFluff(line);
+        if(line != "") {
             m_data.push_back(line);
+        }
     }
     printy();
     file.close();
@@ -48,8 +53,8 @@ void TomlProcessor::printy() {
     }
 }
 
-// Removes white spaces and comments from the string
-void TomlProcessor::clean(string &s) {
+// Removes the surrounding white spaces and comments from the string
+void TomlProcessor::removeFluff(string &s) {
     std::size_t first, last;
 
     // First, only retrieve the stuff before the comment charaters
@@ -58,10 +63,12 @@ void TomlProcessor::clean(string &s) {
     // Then remove the white spaces around the line.
     first = s.find_first_not_of(m_whiteSpaces);
 
-    if (first == std::string::npos) // empty string
+    if (first == string::npos) // empty string
         s = "";
     else {
         last = s.find_last_not_of(m_whiteSpaces);
         s    = s.substr(first, last - first + 1);
     }
 }
+
+} // End of namespace toml

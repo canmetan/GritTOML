@@ -1,0 +1,20 @@
+FEATURES______________________________________________________________
+
+
+UPCOMING______________________________________________________________
+Strings
+- Basic
+- Multi-line basic
+- Literal
+- Multi-line literal.
+
+FUTURE________________________________________________________________
+- I/O character encodings for:
+	- ASCII
+    - UTF-8asdfasdf
+    - UTF-16
+	- UTF-32
+- Platforms:
+	- Linux
+	- Windows
+	- Mac
