@@ -20,42 +20,56 @@ TomlProcessor::~TomlProcessor() {
 }
 
 bool TomlProcessor::parse(string filePath) {
-    ifstream file (filePath, ifstream::in);
+    ifstream file(filePath, ifstream::in);
     string line;
 
-    if (file.fail())
+    if(file.fail())
         return false;
 
-    while (getline (file,line)) {
+    while(getline(file, line)) {
         removeFluff(line);
+
         if(line != "") {
-            m_data.push_back(line);
+            cout << line << endl;
+            vector<string> vecy;
+            split(line, vecy);
+            printy(vecy);
         }
     }
-    printy();
     file.close();
     return true;
 }
 
 bool TomlProcessor::write(string filePath) {
-    ofstream file(filePath, ofstream::app);
+    ofstream file(filePath, ofstream::trunc);
+
     if(file.is_open()) {
-//        file << "Something something";
+        file << "Something something";
         file.close();
         return true;
     }
+
     return false;
 }
 
-void TomlProcessor::printy() {
-    for(auto i = m_data.begin(); i != m_data.end(); ++i) {
+void TomlProcessor::printy(const vector<string> &vec) const {
+    for(auto i = vec.begin(); i != vec.end(); ++i) {
         cout << *i << "\n";
     }
 }
 
+void TomlProcessor::split(const string &s, vector<string> &output) {
+    size_t endIndex = s.find_first_of('=');
+
+    output.push_back(s.substr(0, endIndex));
+    output.push_back(s.substr(s.find_first_not_of(m_afterEquals, endIndex),
+                              s.length()));
+}
+
 // Removes the surrounding white spaces and comments from the string
 void TomlProcessor::removeFluff(string &s) {
-    std::size_t first, last;
+    size_t first, last;
+    int a = 9;
 
     // First, only retrieve the stuff before the comment charaters
     s = s.substr(0, s.find_first_of(m_comments));
@@ -63,12 +77,13 @@ void TomlProcessor::removeFluff(string &s) {
     // Then remove the white spaces around the line.
     first = s.find_first_not_of(m_whiteSpaces);
 
-    if (first == string::npos) // empty string
+    if(first == string::npos)    // empty string
         s = "";
     else {
         last = s.find_last_not_of(m_whiteSpaces);
         s    = s.substr(first, last - first + 1);
+        a = 10;
     }
 }
 
-} // End of namespace toml
+} // End of namespace toml2

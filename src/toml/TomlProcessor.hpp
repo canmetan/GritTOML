@@ -6,13 +6,16 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using std::string;
 using std::vector;
+using std::unordered_map;
 
 namespace toml {
 
-    class TomlProcessor {
+class TomlProcessor {
+
 public:
     TomlProcessor();
     ~TomlProcessor();
@@ -21,18 +24,20 @@ public:
     bool write(string filePath);
 
 private:
-    void printy();
     void removeFluff(string &s);
+    void split(const string &s, const string &delimiter, vector<string> &output);
+    void printy(const vector<string> &vec) const;
 
     // No copy constructor or assignment operator
     TomlProcessor(const TomlProcessor &) = delete;
     TomlProcessor& operator=(const TomlProcessor &) = delete;
 
 private:
-    vector<string> m_data;
+    unordered_map<string,string> m_data;
     // Variables for file parsing
     const string m_comments = "#";
     const string m_whiteSpaces = "\n\t ";
+    const string m_afterEquals = "=" + m_whiteSpaces;
 };
 
 } // End of namespace toml

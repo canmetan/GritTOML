@@ -10,13 +10,13 @@
 using namespace std;
 
 int main() {
-    const string path = "example.toml";
+    const string inputPath = "../input.toml";
+    const string outputPath = "../output.toml";
 
     toml::TomlProcessor processor;
-    if(processor.parse(path))
+    if(processor.parse(inputPath))
         cout << "Successful Execution." << endl;
-
-//    processor.write(path);
-//    getchar();
+    processor.write(outputPath);
+    getchar();
     return 0;
 }

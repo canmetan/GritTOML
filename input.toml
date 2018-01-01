@@ -4,10 +4,9 @@
 # ______________________________________________________________________________
 
 # STRINGS
-basic  = "This is a basic string."
+       basic  = "This is a basic string."
 basic2 = "Another one with a \nnewline, /ttab a \"quote\"."
-"ba. sic" = "Quoted key names."
- 
+
 multilinebasic = """
 This is \
 
@@ -20,16 +19,3 @@ multilinebasic2 = """\
        a basic \
        string.\
        """
-
-literal  = 'C:\Users\grit\docs'
-literal2 = 'This \n is not a new line, "double quotes" stay the same'
-# Single quotes are only possible with multilines.
-literalmultiline = ''''single quotes' "and \special$ characters" are ignored.'''
-literalmultiline2  = '''
-Just the first newline is culled.
-All the
-        other whitespace
-   remains the same.
-'''
-
-# TODO add unicode escape sequences.

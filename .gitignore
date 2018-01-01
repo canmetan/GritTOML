@@ -31,11 +31,11 @@
 *.out
 *.app
 
-# Code-blocks files
-*.cbp
-*.layout
-*.depend
-*bin
+# Codelite files
+*.project
+*.txt
+**/Debug
+*.mk
 
 # Custom
 *.swp
